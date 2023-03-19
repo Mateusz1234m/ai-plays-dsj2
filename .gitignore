@@ -1,3 +1,6 @@
+/pretrain_dataset/data_stare
+/pretrain_dataset/data
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

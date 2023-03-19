@@ -7,14 +7,14 @@ class GameController:
     """
     Class for controlling the game
     """
-    def __init__(self, sleep_time=0.1):
+    def __init__(self, sleep_time=0.2):
         self.sleep_time = sleep_time
+        self.last_click = ""
         self.hills = {
             "FINLAND": (200, 280)
         }
 
-    @staticmethod
-    def left_click():
+    def left_click(self):
         """
         Performs left click.
         :return:
@@ -22,9 +22,9 @@ class GameController:
         win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0)
         time.sleep(0.1)
         win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0)
+        self.last_click = "left"
 
-    @staticmethod
-    def right_click():
+    def right_click(self):
         """
         Performs right click.
         :return:
@@ -32,9 +32,9 @@ class GameController:
         win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTDOWN, 0, 0)
         time.sleep(0.1)
         win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTUP, 0, 0)
+        self.last_click = "right"
 
-    @staticmethod
-    def left_and_right_click():
+    def left_and_right_click(self):
         """
         Performs left and right click at the same time.
         :return:
@@ -44,12 +44,14 @@ class GameController:
         time.sleep(0.4)
         win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0)
         win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTUP, 0, 0)
+        self.last_click = "both"
 
     def move_to_zero(self):
         """
         Moves cursor to base position.
         :return:
         """
+        time.sleep(self.sleep_time)
         win32api.mouse_event(win32con.MOUSEEVENTF_MOVE, -9999, -9999, 0, 0)
         time.sleep(self.sleep_time)
 
@@ -68,8 +70,7 @@ class GameController:
     def jumper_move(y):
         """
         Performs jumper move (up or down).
-        :param self:
-        :param y:
+        :param y: specifies movement value
         :return:
         """
         win32api.mouse_event(win32con.MOUSEEVENTF_MOVE,0, y, 0, 0)
@@ -85,6 +86,8 @@ class GameController:
         time.sleep(self.sleep_time)
         self.left_click()
         time.sleep(self.sleep_time)
+        # self.left_click()
+        # time.sleep(self.sleep_time)
 
     def choose_training(self):
         """
@@ -101,6 +104,7 @@ class GameController:
         :param hill:
         :return:
         """
+        time.sleep(self.sleep_time)
         self.move_to(self.hills[hill])
         time.sleep(self.sleep_time)
         self.left_click()
@@ -108,7 +112,7 @@ class GameController:
     def test_jump(self, times=[3.8, 2.7, 10]):
         """
         Performs test jump (hardcoded).
-        :param times:
+        :param times: sleep times between clicks.
         :return:
         """
         time.sleep(2)
