@@ -51,4 +51,6 @@ The neural network used is a resnet18 without the last fully connected layer, wh
 
 Training and validation loss is shown below. It can be assumed that the backbone is capable of extracting the features necessary to determine the values listed above.
 
-<img src="readme_data/training_and_valid_loss.png.png">
+<br/>
+
+<img src="readme_data/training_and_valid_loss.png">
