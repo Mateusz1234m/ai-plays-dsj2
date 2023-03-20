@@ -49,7 +49,7 @@ The dataset contains ~5k images. Labels are stored in pandas DataFrame, example 
 
 The neural network used is a resnet18 without the last fully connected layer, which was replaced by layers corresponding to the each value predicted by the network.
 
-Training and validation loss is shown below. It can be assumed that the backbone is capable of extracting the features necessary to determine the values listed above.
+The neural network was trained for 5 epochs with batch_size=32 which gives ~700 iterations. Training and validation loss is shown below. It can be assumed that the backbone is capable of extracting the features necessary to determine the values listed above.
 
 <br/>
 
